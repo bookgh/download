@@ -1,5 +1,5 @@
-###### kubelet stable
-https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl --> kubelet-$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+###### kubelet v1.31.0
+https://storage.googleapis.com/kubernetes-release/release/v1.31.0/bin/linux/amd64/kubectl --> kubelet-v1.31.0
 
 
 ###### kustomize v5.5.0
