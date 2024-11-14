@@ -41,7 +41,7 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: al2023-amd64
+          name: download
           path: ./download
 
       - name: Get tag message
