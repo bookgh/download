@@ -1,0 +1,6 @@
+###### kubelet stable
+https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl --> kubelet-$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+
+
+###### kustomize v5.5.0
+https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.5.0/kustomize_v5.5.0_linux_amd64.tar.gz -->  kustomize_v5.5.0_linux_amd64.tar.gz
