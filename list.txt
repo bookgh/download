@@ -8,4 +8,4 @@ https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.5.0/
 
 
 ###### maven 3.6.3
-https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -->  kustomize_v5.5.0_linux_amd64.tgz
+https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -->  apache-maven-3.6.3-bin.tgz
