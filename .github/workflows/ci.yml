@@ -22,11 +22,40 @@ jobs:
           while read line; do
               url=$(awk '{$1=$1}1' <<<"${line%%-->*}")
               file=$(awk '{$1=$1}1' <<<"${line##*-->}")
-              echo "==> curl -sL $url -o \${{ github.workspace }}/download/$file"
+              echo "==> curl -sL $url -o ${{ github.workspace }}/download/$file"
               curl -sL $url -o ${{ github.workspace }}/download/$file
           done < <(egrep -v "^$|^#" list.txt)
 
       - uses: actions/upload-artifact@v4
         with:
-          name: "保留文件夹"
+          name: download
           path: ${{ github.workspace }}/download
+
+  create_release:
+    needs:
+      - download
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: al2023-amd64
+          path: ./download
+
+      - name: Get tag message
+        run: |
+          echo -e "> Automated release created by GitHub Actions.\n" > ${{ github.workspace }}/RELEASE.md
+          GITHUB_REF=${{ github.ref }}
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          git tag -l --format='%(contents)' "${TAG_NAME}" | tee -a ${{ github.workspace }}/RELEASE.md
+
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{ github.workspace }}/download/*"
+          bodyFile: ${{ github.workspace }}/RELEASE.md
+          token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
