@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: "下载文件"
+        run: |
+          mkdir -p ${{ github.workspace }}/download
+
+          while read line; do
+              url=$(awk '{$1=$1}1' <<<"${line%%-->*}")
+              file=$(awk '{$1=$1}1' <<<"${line##*-->}")
+              echo "==> curl -sL $url -o \${{ github.workspace }}/download/$file"
+              curl -sL $url -o ${{ github.workspace }}/download/$file
+          done < <(egrep -v "^$|^#" list.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "保留文件夹"
+          path: ${{ github.workspace }}/download
