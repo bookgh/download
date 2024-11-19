@@ -12,4 +12,4 @@ https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.5.0/
 
 
 ###### hadoop
-https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.10.2/hadoop-2.10.2-src.tar.gz -->  hadoop-2.10.2-src.tar.gz
+https://archive.apache.org/dist/hadoop/common/hadoop-2.10.2/hadoop-2.10.2-src.tar.gz -->  hadoop-2.10.2-src.tar.gz
